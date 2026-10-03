@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Mendoza | Finance Portfolio & Resume</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        rutgers: {
+                            red: '#CC0033',
+                            darkRed: '#990022',
+                            navy: '#0A192F',
+                            slate: '#1E293B',
+                            accent: '#3B82F6',
+                            gold: '#D97706'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3B82F6;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #CC0033;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #CC0033 0%, #2563EB 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .dark .gradient-text {
+            background: linear-gradient(135deg, #F87171 0%, #60A5FA 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans transition-colors duration-300 min-h-screen selection:bg-rutgers-red selection:text-white">
+
+    <!-- Toast Notification Container -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900 px-5 py-3 rounded-xl shadow-2xl flex items-center space-x-3 border border-slate-700 dark:border-slate-300">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-green-500 text-lg"></i>
+        <span id="toast-msg" class="text-sm font-medium">Message sent successfully!</span>
+    </div>
+
+    <!-- Sticky Navigation Header -->
+    <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 glass-card transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo / Name Badge -->
+                <a href="#hero" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-rutgers-red to-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-rutgers-red/20 group-hover:scale-105 transition-transform">
+                        DM
+                    </div>
+                    <div>
+                        <span class="text-lg font-bold tracking-tight block leading-tight group-hover:text-rutgers-red transition-colors">David Mendoza</span>
+                        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Rutgers Business School '28</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-6 text-sm font-medium">
+                    <a href="#about" class="px-3 py-2 text-slate-600 dark:text-slate-300 hover:text-rutgers-red dark:hover:text-blue-400 transition-colors">About</a>
+                    <a href="#education" class="px-3 py-2 text-slate-600 dark:text-slate-300 hover:text-rutgers-red dark:hover:text-blue-400 transition-colors">Education</a>
+                    <a href="#experience" class="px-3 py-2 text-slate-600 dark:text-slate-300 hover:text-rutgers-red dark:hover:text-blue-400 transition-colors">Experience</a>
+                    <a href="#skills" class="px-3 py-2 text-slate-600 dark:text-slate-300 hover:text-rutgers-red dark:hover:text-blue-400 transition-colors">Skills</a>
+                    <a href="#involvement" class="px-3 py-2 text-slate-600 dark:text-slate-300 hover:text-rutgers-red dark:hover:text-blue-400 transition-colors">Involvement</a>
+                    <a href="#interests" class="px-3 py-2 text-slate-600 dark:text-slate-300 hover:text-rutgers-red dark:hover:text-blue-400 transition-colors">Interests</a>
+                </nav>
+
+                <!-- Actions: Dark Mode & Contact Button -->
+                <div class="flex items-center space-x-3">
+                    <button id="theme-toggle" aria-label="Toggle Theme" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                        <i id="theme-icon" class="fa-solid fa-moon"></i>
+                    </button>
+                    <a href="#contact" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-rutgers-red to-red-700 text-white px-4 py-2 rounded-xl font-medium text-sm shadow-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">
+                        <i class="fa-solid fa-paper-plane text-xs"></i>
+                        <span>Contact Me</span>
+                    </a>
+                    
+                    <!-- Mobile Hamburger Button -->
+                    <button id="mobile-menu-btn" aria-label="Toggle Mobile Menu" class="md:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+            <div class="px-4 pt-2 pb-4 space-y-1 text-sm font-medium">
+                <a href="#about" class="mobile-nav-link block px-3 py-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">About</a>
+                <a href="#education" class="mobile-nav-link block px-3 py-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Education</a>
+                <a href="#experience" class="mobile-nav-link block px-3 py-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Experience</a>
+                <a href="#skills" class="mobile-nav-link block px-3 py-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Skills</a>
+                <a href="#involvement" class="mobile-nav-link block px-3 py-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Involvement</a>
+                <a href="#interests" class="mobile-nav-link block px-3 py-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Interests</a>
+                <a href="#contact" class="mobile-nav-link block px-3 py-2.5 text-center rounded-lg bg-rutgers-red text-white font-semibold">Get in Touch</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative pt-12 pb-20 md:py-24 overflow-hidden">
+        <!-- Background Decorative Orbs -->
+        <div class="absolute -top-20 -left-20 w-96 h-96 bg-rutgers-red/10 dark:bg-rutgers-red/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/2 -right-20 w-96 h-96 bg-blue-500/10 dark:bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Bio Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-800/50 text-rutgers-red dark:text-red-400 text-xs font-semibold tracking-wide uppercase">
+                        <span class="w-2 h-2 rounded-full bg-rutgers-red animate-pulse"></span>
+                        Rutgers Business School Undergraduate
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        Hi, I'm <span class="gradient-text">David Mendoza</span>
+                    </h1>
+
+                    <p class="text-slate-600 dark:text-slate-300 text-lg sm:text-xl max-w-2xl leading-relaxed mx-auto lg:mx-0">
+                        Aspiring <strong class="text-slate-900 dark:text-white">Finance Professional</strong> studying at Rutgers Business School. Driven by financial strategy, operational efficiency, high-volume customer service excellence, and cross-functional leadership.
+                    </p>
+
+                    <!-- Contact & Location Badges -->
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-3 pt-2 text-sm text-slate-600 dark:text-slate-300">
+                        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <i class="fa-solid fa-location-dot text-rutgers-red"></i> Ocean Township, NJ
+                        </span>
+                        <button onclick="copyToClipboard('dm1850@scarletmail.rutgers.edu', 'Email address copied!')" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-blue-500 transition-colors">
+                            <i class="fa-solid fa-envelope text-blue-500"></i> dm1850@scarletmail.rutgers.edu
+                        </button>
+                        <a href="https://www.linkedin.com/in/david-mendoza-44258b326/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-blue-600 hover:text-blue-600 transition-colors">
+                            <i class="fa-brands fa-linkedin text-blue-600"></i> LinkedIn Profile
+                        </a>
+                    </div>
+
+                    <!-- Call To Action Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#experience" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold shadow-lg hover:shadow-xl hover:bg-slate-800 dark:hover:bg-slate-100 transition-all flex items-center justify-center gap-2">
+                            <span>View Work Experience</span>
+                            <i class="fa-solid fa-arrow-down text-xs"></i>
+                        </a>
+                        <a href="#contact" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-semibold border border-slate-200 dark:border-slate-800 shadow-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-comments text-rutgers-red"></i>
+                            <span>Get In Touch</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Avatar & Quick Metrics Card -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <!-- Card Border Glow -->
+                        <div class="absolute -inset-1 bg-gradient-to-r from-rutgers-red via-blue-600 to-indigo-600 rounded-3xl blur opacity-30 group-hover:opacity-100 transition duration-1000"></div>
+                        
+                        <div class="relative p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl space-y-6">
+                            <!-- Avatar Circle -->
+                            <div class="flex items-center space-x-4">
+                                <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-rutgers-red to-blue-700 flex items-center justify-center text-white text-3xl font-extrabold shadow-lg shadow-rutgers-red/30 shrink-0">
+                                    DM
+                                </div>
+                                <div>
+                                    <h2 class="text-xl font-bold">David Mendoza</h2>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400">B.S. in Finance Student</p>
+                                    <p class="text-xs text-rutgers-red dark:text-red-400 font-medium mt-1">Expected Graduation: May 2028</p>
+                                </div>
+                            </div>
+
+                            <hr class="border-slate-100 dark:border-slate-800">
+
+                            <!-- Key Metrics Highlight Grid -->
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+                                    <div class="text-2xl font-black text-rutgers-red dark:text-red-400">15-20%</div>
+                                    <div class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">Wait Time Reduction</div>
+                                </div>
+                                <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+                                    <div class="text-2xl font-black text-blue-600 dark:text-blue-400">95%</div>
+                                    <div class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">Customer Satisfaction</div>
+                                </div>
+                                <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+                                    <div class="text-2xl font-black text-slate-800 dark:text-white">200+</div>
+                                    <div class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">Daily Items Served</div>
+                                </div>
+                                <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+                                    <div class="text-2xl font-black text-emerald-600 dark:text-emerald-400">Bilingual</div>
+                                    <div class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">English & Spanish</div>
+                                </div>
+                            </div>
+
+                            <!-- Organization Badge -->
+                            <div class="flex items-center justify-between p-3 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900/40 text-blue-900 dark:text-blue-200 text-xs font-semibold">
+                                <span class="flex items-center gap-2">
+                                    <i class="fa-solid fa-users-line text-blue-600"></i> ALPFA Rutgers Member
+                                </span>
+                                <i class="fa-solid fa-circle-check text-blue-600"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-16 bg-white dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-bold text-rutgers-red dark:text-red-400 uppercase tracking-widest">Academic Background</h2>
+                <p class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Education</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="relative p-8 rounded-3xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl overflow-hidden group hover:border-rutgers-red/50 transition-all duration-300">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-rutgers-red/5 rounded-bl-full pointer-events-none"></div>
+                    
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div class="flex items-start gap-5">
+                            <div class="w-16 h-16 rounded-2xl bg-rutgers-red text-white flex items-center justify-center text-2xl font-black shrink-0 shadow-md">
+                                R
+                            </div>
+                            <div>
+                                <span class="text-xs font-bold text-rutgers-red dark:text-red-400 uppercase tracking-wider">Rutgers, The State University of New Jersey</span>
+                                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mt-0.5">Rutgers Business School</h3>
+                                <p class="text-lg font-medium text-slate-700 dark:text-slate-300 mt-1">Bachelor of Science in Finance</p>
+                            </div>
+                        </div>
+                        <div class="md:text-right shrink-0">
+                            <span class="inline-block px-4 py-1.5 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-semibold text-sm">
+                                Expected May 2028
+                            </span>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2"><i class="fa-solid fa-location-dot mr-1"></i>New Brunswick, NJ</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-red-100 dark:bg-red-900/30 text-rutgers-red flex items-center justify-center"><i class="fa-solid fa-chart-line"></i></div>
+                            <div>
+                                <span class="block text-xs text-slate-500">Major</span>
+                                <span class="font-semibold">Finance</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 flex items-center justify-center"><i class="fa-solid fa-building-columns"></i></div>
+                            <div>
+                                <span class="block text-xs text-slate-500">Campus</span>
+                                <span class="font-semibold">Rutgers New Brunswick</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-900/30 text-amber-600 flex items-center justify-center"><i class="fa-solid fa-users"></i></div>
+                            <div>
+                                <span class="block text-xs text-slate-500">Affiliation</span>
+                                <span class="font-semibold">ALPFA Member</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Experience Section -->
+    <section id="experience" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-bold text-rutgers-red dark:text-red-400 uppercase tracking-widest">Track Record</h2>
+                <p class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Professional Experience</p>
+                <p class="text-slate-600 dark:text-slate-400 mt-2">Demonstrated impact in fast-paced service and hospitality operations.</p>
+            </div>
+
+            <!-- Tab Switcher -->
+            <div class="flex justify-center mb-10">
+                <div class="inline-flex p-1.5 rounded-2xl bg-slate-200 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700">
+                    <button id="tab-millers" onclick="switchExperienceTab('millers')" class="tab-btn px-6 py-2.5 rounded-xl font-semibold text-sm transition-all bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm">
+                        Miller's Ale House (2 Roles)
+                    </button>
+                    <button id="tab-coldstone" onclick="switchExperienceTab('coldstone')" class="tab-btn px-6 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+                        Coldstone Creamery
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab Content 1: Miller's Ale House -->
+            <div id="content-millers" class="max-w-4xl mx-auto space-y-8">
+                <!-- Role 1: Host -->
+                <div class="relative p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-lg hover:shadow-xl transition-all">
+                    <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
+                        <div>
+                            <span class="inline-block px-3 py-1 rounded-md bg-red-100 dark:bg-red-950 text-rutgers-red dark:text-red-400 text-xs font-bold uppercase tracking-wider mb-2">Ocean Township, NJ</span>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Host, Front of House</h3>
+                            <p class="text-slate-600 dark:text-slate-400 font-medium">Miller's Ale House</p>
+                        </div>
+                        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-xs self-start sm:self-auto">
+                            <i class="fa-regular fa-calendar text-rutgers-red"></i> Aug 2025 – Present
+                        </span>
+                    </div>
+
+                    <ul class="space-y-4 text-slate-600 dark:text-slate-300 text-sm sm:text-base">
+                        <li class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-red-100 dark:bg-red-900/40 text-rutgers-red flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-xs"></i></span>
+                            <span>Welcomed and seated up to <strong>50 guests per shift</strong>, ensuring a warm first impression and maintaining efficient seating flow during peak operating hours.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-red-100 dark:bg-red-900/40 text-rutgers-red flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-xs"></i></span>
+                            <span>Managed table assignments and reservations strategically, decreasing guest wait times by <strong>15% to 20%</strong> during rush periods.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-red-100 dark:bg-red-900/40 text-rutgers-red flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-xs"></i></span>
+                            <span>Communicated with servers and kitchen staff in real time to manage order flow, supporting smooth operations and high table turnover.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Role 2: Busser -->
+                <div class="relative p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-lg hover:shadow-xl transition-all">
+                    <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
+                        <div>
+                            <span class="inline-block px-3 py-1 rounded-md bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-wider mb-2">Ocean Township, NJ</span>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Busser, Front of House</h3>
+                            <p class="text-slate-600 dark:text-slate-400 font-medium">Miller's Ale House</p>
+                        </div>
+                        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-xs self-start sm:self-auto">
+                            <i class="fa-regular fa-calendar text-blue-500"></i> Jul 2025 – Present
+                        </span>
+                    </div>
+
+                    <ul class="space-y-4 text-slate-600 dark:text-slate-300 text-sm sm:text-base">
+                        <li class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-xs"></i></span>
+                            <span>Cleared and reset tables efficiently for up to <strong>100 guests per shift</strong>, driving high table turnover during peak hours.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-xs"></i></span>
+                            <span>Restocked utensils, condiments, and service supplies for up to <strong>100 guests per shift</strong>, ensuring servers had tools needed for uninterrupted service.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-xs"></i></span>
+                            <span>Coordinated with servers to deliver food and fulfill requests across <strong>50 tables per shift</strong>, contributing to a <strong>95% positive customer satisfaction rating</strong>.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Tab Content 2: Coldstone Creamery -->
+            <div id="content-coldstone" class="max-w-4xl mx-auto hidden">
+                <div class="relative p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-lg hover:shadow-xl transition-all">
+                    <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
+                        <div>
+                            <span class="inline-block px-3 py-1 rounded-md bg-amber-100 dark:bg-amber-950 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-wider mb-2">Eatontown, NJ</span>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Crew Member, Service Team</h3>
+                            <p class="text-slate-600 dark:text-slate-400 font-medium">Coldstone Creamery</p>
+                        </div>
+                        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-xs self-start sm:self-auto">
+                            <i class="fa-regular fa-calendar text-amber-500"></i> Jan 2023 – Sep 2023
+                        </span>
+                    </div>
+
+                    <ul class="space-y-4 text-slate-600 dark:text-slate-300 text-sm sm:text-base">
+                        <li class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-600 flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-xs"></i></span>
+                            <span>Greeted each customer warmly, fostering an inviting atmosphere and earning a <strong>95% satisfaction rating</strong> on weekly store surveys.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-600 flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-xs"></i></span>
+                            <span>Executed tasks under high-volume conditions, preparing and serving <strong>200+ custom items per day</strong> while adhering strictly to food safety guidelines.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-600 flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-xs"></i></span>
+                            <span>Mastered new creations, recipes, and seasonal promotions within the first week, serving up to <strong>150 customers per shift with 100% order accuracy</strong>.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Skills & Core Competencies Section -->
+    <section id="skills" class="py-20 bg-slate-100/70 dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-rutgers-red dark:text-red-400 uppercase tracking-widest">Capabilities</h2>
+                <p class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Skills & Technical Competencies</p>
+                <p class="text-slate-600 dark:text-slate-400 mt-2">A versatile toolkit combining analytical software skills, languages, and interpersonal leadership.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Category 1: Languages -->
+                <div class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-xl transition-all">
+                    <div class="w-12 h-12 rounded-2xl bg-red-100 dark:bg-red-900/30 text-rutgers-red flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-language"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Languages</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-sm font-semibold mb-1">
+                                <span>English</span>
+                                <span class="text-rutgers-red">Native</span>
+                            </div>
+                            <div class="w-full h-2.5 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                                <div class="h-full bg-rutgers-red rounded-full w-full"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm font-semibold mb-1">
+                                <span>Spanish</span>
+                                <span class="text-blue-500">Fluent</span>
+                            </div>
+                            <div class="w-full h-2.5 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                                <div class="h-full bg-blue-500 rounded-full w-11/12"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 2: Technical Skills -->
+                <div class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-xl transition-all">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-100 dark:bg-blue-900/30 text-blue-600 flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Technical & Software</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-sm font-semibold flex items-center gap-2">
+                            <i class="fa-file-excel font-normal text-emerald-600"></i> Microsoft Excel
+                        </span>
+                        <span class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-sm font-semibold flex items-center gap-2">
+                            <i class="fa-file-word font-normal text-blue-600"></i> Microsoft Word
+                        </span>
+                        <span class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-sm font-semibold flex items-center gap-2">
+                            <i class="fa-file-powerpoint font-normal text-amber-600"></i> PowerPoint
+                        </span>
+                        <span class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-sm font-semibold flex items-center gap-2">
+                            <i class="fa-code font-normal text-orange-500"></i> Basic HTML Code
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Category 3: Soft Skills -->
+                <div class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-xl transition-all">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-people-group"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Interpersonal & Strategy</h3>
+                    <div class="space-y-3 text-sm font-medium">
+                        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 flex items-center gap-3">
+                            <i class="fa-solid fa-users text-emerald-500"></i>
+                            <span>Collaborative Teamwork</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 flex items-center gap-3">
+                            <i class="fa-solid fa-comments text-emerald-500"></i>
+                            <span>Cross-Functional Communication</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 flex items-center gap-3">
+                            <i class="fa-solid fa-clock text-emerald-500"></i>
+                            <span>High-Volume Workflow Management</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Campus & Community Section -->
+    <section id="involvement" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- Campus Involvement Card -->
+                <div class="p-8 rounded-3xl bg-gradient-to-br from-white to-slate-50 dark:from-slate-900 dark:to-slate-950 border border-slate-200 dark:border-slate-800 shadow-xl relative overflow-hidden">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 rounded-2xl bg-rutgers-red text-white flex items-center justify-center text-2xl shadow-md shadow-rutgers-red/30">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold text-rutgers-red dark:text-red-400 uppercase tracking-wider">Campus Engagement</span>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Organization Involvement</h3>
+                        </div>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+                        <div class="flex items-center justify-between">
+                            <h4 class="text-lg font-bold text-slate-900 dark:text-white">ALPFA Member</h4>
+                            <span class="px-2.5 py-1 rounded-full bg-red-100 dark:bg-red-950 text-rutgers-red dark:text-red-400 text-xs font-bold">Active</span>
+                        </div>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm">
+                            <strong>Association of Latino Professionals for America</strong> (ALPFA)
+                        </p>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">
+                            Engaging in professional development, leadership networking, and finance industry mentorship within Rutgers University.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Community Service Card -->
+                <div class="p-8 rounded-3xl bg-gradient-to-br from-white to-slate-50 dark:from-slate-900 dark:to-slate-950 border border-slate-200 dark:border-slate-800 shadow-xl relative overflow-hidden">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 rounded-2xl bg-blue-600 text-white flex items-center justify-center text-2xl shadow-md shadow-blue-600/30">
+                            <i class="fa-solid fa-hand-holding-heart"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">Social Impact</span>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Community Service</h3>
+                        </div>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+                        <div class="flex items-center justify-between">
+                            <h4 class="text-lg font-bold text-slate-900 dark:text-white">Mya Lin Foundation Volunteer</h4>
+                            <span class="px-2.5 py-1 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 text-xs font-bold">Volunteer</span>
+                        </div>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm">
+                            Organized and supported a charity soccer tournament dedicated to the <strong>Mya Lin Foundation</strong>.
+                        </p>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">
+                            Assisted with event logistics, guest coordination, and sports operations to support foundation initiatives.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Interests Section -->
+    <section id="interests" class="py-20 bg-slate-100/70 dark:bg-slate-900/40 border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-bold text-rutgers-red dark:text-red-400 uppercase tracking-widest">Beyond Finance</h2>
+                <p class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Personal Passions & Interests</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                
+                <!-- Interest 1: Automotive -->
+                <div class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-lg flex gap-6 items-start hover:border-rutgers-red transition-all">
+                    <div class="w-16 h-16 rounded-2xl bg-red-100 dark:bg-red-900/40 text-rutgers-red flex items-center justify-center text-3xl shrink-0">
+                        <i class="fa-solid fa-car-side"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Automotive Culture</h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                            Passionate about automotive engineering design, vehicle performance dynamics, custom modifications, and actively connecting with the automotive enthusiast community.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Interest 2: Music -->
+                <div class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-lg flex gap-6 items-start hover:border-blue-500 transition-all">
+                    <div class="w-16 h-16 rounded-2xl bg-blue-100 dark:bg-blue-900/40 text-blue-600 flex items-center justify-center text-3xl shrink-0">
+                        <i class="fa-solid fa-music"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Music & Alto Saxophone</h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                            Enjoys playing the <strong>Alto Saxophone</strong> and exploring a diverse variety of musical genres, arrangements, and artistic performance styles.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto bg-slate-900 text-white rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+                <!-- Decorative background elements -->
+                <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-rutgers-red/20 rounded-full blur-2xl pointer-events-none"></div>
+                <div class="absolute -left-10 -top-10 w-64 h-64 bg-blue-600/20 rounded-full blur-2xl pointer-events-none"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 relative z-10">
+                    
+                    <!-- Left Contact Details -->
+                    <div class="md:col-span-5 space-y-6">
+                        <div>
+                            <span class="text-xs font-bold text-rutgers-red uppercase tracking-widest">Connect With Me</span>
+                            <h2 class="text-3xl font-extrabold text-white mt-1">Let's Connect</h2>
+                            <p class="text-slate-400 text-sm mt-2">Open for internship opportunities, networking, and professional inquiries.</p>
+                        </div>
+
+                        <div class="space-y-4 text-sm pt-2">
+                            <div class="flex items-center gap-3 p-3 rounded-2xl bg-slate-800/60 border border-slate-700/60">
+                                <i class="fa-solid fa-envelope text-rutgers-red text-lg w-6 text-center"></i>
+                                <div class="overflow-hidden">
+                                    <span class="block text-xs text-slate-400">Email Address</span>
+                                    <a href="mailto:dm1850@scarletmail.rutgers.edu" class="font-medium hover:text-red-400 transition-colors truncate block">dm1850@scarletmail.rutgers.edu</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-3 p-3 rounded-2xl bg-slate-800/60 border border-slate-700/60">
+                                <i class="fa-solid fa-phone text-blue-400 text-lg w-6 text-center"></i>
+                                <div>
+                                    <span class="block text-xs text-slate-400">Phone Number</span>
+                                    <a href="tel:8484666966" class="font-medium hover:text-blue-400 transition-colors">(848) 466-6966</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-3 p-3 rounded-2xl bg-slate-800/60 border border-slate-700/60">
+                                <i class="fa-solid fa-location-dot text-amber-400 text-lg w-6 text-center"></i>
+                                <div>
+                                    <span class="block text-xs text-slate-400">Location</span>
+                                    <span class="font-medium">Ocean Township, NJ</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="https://www.linkedin.com/in/david-mendoza-44258b326/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm transition-all shadow-md">
+                            <i class="fa-brands fa-linkedin text-base"></i>
+                            <span>Connect on LinkedIn</span>
+                        </a>
+                    </div>
+
+                    <!-- Right Interactive Form -->
+                    <div class="md:col-span-7 bg-slate-800/80 p-6 sm:p-8 rounded-2xl border border-slate-700/80">
+                        <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1">Your Name</label>
+                                <input type="text" id="name" required placeholder="John Doe" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-rutgers-red text-sm transition-colors">
+                            </div>
+
+                            <div>
+                                <label for="email" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1">Your Email</label>
+                                <input type="email" id="email" required placeholder="john@example.com" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-rutgers-red text-sm transition-colors">
+                            </div>
+
+                            <div>
+                                <label for="message" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1">Message</label>
+                                <textarea id="message" rows="4" required placeholder="Hi David, I'd like to connect regarding..." class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-rutgers-red text-sm transition-colors"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-rutgers-red to-red-700 text-white font-bold text-sm shadow-lg hover:brightness-110 active:scale-98 transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane text-xs"></i>
+                                <span>Send Message</span>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-slate-200 dark:border-slate-800 text-center text-xs text-slate-500 dark:text-slate-400">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>© <span id="current-year"></span> David Mendoza. Rutgers Business School Finance Student.</p>
+            <p class="mt-1">Ocean Township, New Jersey • All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Set dynamic current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+
+        // Check system or saved preference
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeIcon.classList.replace('fa-sun', 'fa-moon');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            }
+        });
+
+        // Mobile Menu Drawer Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Experience Tab Switcher
+        function switchExperienceTab(tabKey) {
+            const btnMillers = document.getElementById('tab-millers');
+            const btnColdstone = document.getElementById('tab-coldstone');
+            const contentMillers = document.getElementById('content-millers');
+            const contentColdstone = document.getElementById('content-coldstone');
+
+            const activeClass = ['bg-white', 'dark:bg-slate-900', 'text-slate-900', 'dark:text-white', 'shadow-sm'];
+            const inactiveClass = ['text-slate-600', 'dark:text-slate-400'];
+
+            if (tabKey === 'millers') {
+                contentMillers.classList.remove('hidden');
+                contentColdstone.classList.add('hidden');
+
+                btnMillers.classList.add(...activeClass);
+                btnMillers.classList.remove(...inactiveClass);
+
+                btnColdstone.classList.remove(...activeClass);
+                btnColdstone.classList.add(...inactiveClass);
+            } else {
+                contentMillers.classList.add('hidden');
+                contentColdstone.classList.remove('hidden');
+
+                btnColdstone.classList.add(...activeClass);
+                btnColdstone.classList.remove(...inactiveClass);
+
+                btnMillers.classList.remove(...activeClass);
+                btnMillers.classList.add(...inactiveClass);
+            }
+        }
+
+        // Copy to Clipboard Toast Utility
+        function copyToClipboard(text, message) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text);
+            } else {
+                // Fallback for document.execCommand
+                const textarea = document.createElement("textarea");
+                textarea.value = text;
+                textarea.style.position = "fixed";
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                } catch (err) {
+                    console.error('Fallback copy failed', err);
+                }
+                document.body.removeChild(textarea);
+            }
+            showToast(message || "Copied to clipboard!");
+        }
+
+        // Show Toast Notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            toastMsg.textContent = message;
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Handle Contact Form Submit
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            showToast(`Thank you, ${name}! Your message has been sent.`);
+            document.getElementById('contact-form').reset();
+        }
+    </script>
+</body>
+</html>
